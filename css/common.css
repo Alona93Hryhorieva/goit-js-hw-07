@@ -20,8 +20,12 @@ body {
 }
 
 .gallery li {
-  /* list-style: none;
-  margin: 5px; */
+  list-style: none;
   width: calc((100% - 24px * 2) / 3);
 }
 
+.gallery img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

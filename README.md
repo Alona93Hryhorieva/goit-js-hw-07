@@ -66,4 +66,84 @@ nameInput.value.trim();
 // Перевіряємо, чи інпут порожній або містить лише пробіли // if (inputValue ===
 '') { // nameOutput.textContent = 'Anonymous'; // Якщо так, встановлюємо
 'Anonymous' у спан // } else { // nameOutput.textContent = inputValue; // В
-іншому випадку встановлюємо значення з інпуту // } // });
+іншому випадку встановлюємо значення з інпуту // } // }); \*--------/////------
+// відправлення форми form.login - form повинна відбуватися за подією submit. //
+Під час відправлення форми сторінка не повинна перезавантажуватися. // Якщо при
+сабміті у формі є незаповнені поля, виводь alert з попередженням про те, що 'All
+form fields must be filled in'. Не додавай на інпути атрибут required, валідація
+має відбуватися саме через JS. // Якщо користувач заповнив усі поля і відправив
+форму, збери значення полів в об'єкт з двома властивостями, де ключ — це ім'я
+інпутів, а значення — відповідні значення цих інпутів, очищені від пробілів по
+краях. Для доступу до елементів форми використовуй властивість elements. // При
+сабміті форми виведи об'єкт із введеними даними в консоль і очисти значення
+полів форми методом reset.
+
+<form class="login-form">
+  <label>
+    Email
+    <input type="email" name="email" />
+  </label>
+  <label>
+    Password
+    <input type="password" name="password" />
+  </label>
+  <button type="submit">Log in</button>
+</form>
+
+<script>
+  document.querySelector('.login-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Це запобігає перезавантаженню сторінки при відправленні форми
+
+    // Отримуємо значення полів форми
+    const emailInput = this.elements['email'].value.trim();
+    const passwordInput = this.elements['password'].value.trim();
+
+    // Перевіряємо, чи заповнені всі поля
+    if (emailInput === '' || passwordInput === '') {
+      alert('All form fields must be filled in');
+      return; // Припиняємо подальше виконання коду
+    }
+
+    // Збираємо дані в об'єкт
+    const formData = {
+      email: emailInput,
+      password: passwordInput
+    };
+
+    // Виводимо об'єкт з введеними даними в консоль
+    console.log(formData);
+
+    // Очищаємо значення полів форми
+    this.reset();
+  });
+</script>
+
+_//////////////////////_ Напиши скрипт, який змінює колір фону елемента <body>
+через інлайн-стиль по кліку на button.change-color і задає це значення кольору
+текстовим вмістом для span.color.
+
+<div class="widget">
+  <p>Background color: <span class="color">-</span></p>
+  <button type="button" class="change-color">Change color</button>
+</div>
+
+/\*\*\*\*/---+++///
+
+Для генерування випадкового кольору використовуй функцію getRandomHexColor().
+function getRandomHexColor() { return
+`#${Math.floor(Math.random() * 16777215) .toString(16) .padStart(6, 0)}`; }
+Зверни увагу, що функція getRandomHexColor() повертає колір у hex-форматі, в той
+час як колір фону на <body> буде у форматі rgb. Це нормально й не потребує
+якихось правок.
+
+function getRandomHexColor() { return
+`#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`; }
+
+const button = document.querySelector('.change-color'); const colorSpan =
+document.querySelector('.color');
+
+button.addEventListener('click', function() { const newColor =
+getRandomHexColor(); document.body.style.backgroundColor = newColor;
+colorSpan.textContent = newColor; });
+
+-----\*\*\*\*-----
