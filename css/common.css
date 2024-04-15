@@ -13,6 +13,38 @@ body {
   line-height: 1.5;
 }
 
+#categories {
+  padding: 0;
+}
+
+.item {
+  border-color: #f6f6fe;
+  width: 392px;
+  list-style: none;
+  border-radius: 8px;
+  /* padding: 16px; */
+  margin-bottom: 24px;
+}
+
+.item ul {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  gap: 8px;
+}
+
+.item li {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  list-style: none;
+  padding-left: 16px;
+  border: 1px solid #808080;
+  color: #2e2f42;
+  width: 360px;
+  height: 40px;
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -51,7 +83,7 @@ body {
   margin-top: 8px;
 }
 .login-form input:hover{
-border: 1px solid #000;
+ border: 1px solid #000;
 }
 
 button {
@@ -76,4 +108,7 @@ button:hover {
 .change-color{
   width: 148px;
   margin-top: 0;
+}
+.gallery{
+display: i;
 }

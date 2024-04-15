@@ -7,11 +7,10 @@
 // Кожен наступний елемент повинен бути ширшим і вищим від попереднього на 10px.
 // Усі елементи повинні мати випадковий колір фону.Використовуй готову функцію getRandomHexColor() для отримання випадкового кольору.
 
-const btnCreate = document.querySelector(".controls button[data-create]");
-const btnDestroy = document.querySelector(".controls button[data-destroy]");
-
-const registerImput = document.querySelector("#controls");
-registerImput.addEventListener("submit", handleSubmit);
+const btnCreate = document.querySelector('[data-create]');
+const btnDestroy = document.querySelector('[data-destroy]');
+const input = document.querySelector('#controls input[type="number"]');
+const boxesContainer = document.querySelector('#boxes');
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
@@ -19,44 +18,33 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-function destroyBoxes() {
-  const box = document.querySelector(".#boxes");
-  box.remove;
+function createBoxes(amount) {
+  for (let i = 0; i < amount; i++) {
+   const box = document.createElement('div');
+   const size = 30 + i * 10;
+    box.style.width = `${size}px`;
+    box.style.height = `${size}px`;
+    box.style.display = "flex";
+    box.style.marginRight = "16px";
+    box.style.backgroundColor = getRandomHexColor();
+    boxesContainer.appendChild(box);
+  }
 }
-
-for (let index =0; index < 100; index +=1) {
-  const element = array[index];
   
+function destroyBoxes() {
+ boxesContainer.innerHTML = '';
 }
 
-// const button = document.querySelector(".change-color");
-// const span = document.querySelector(".color");
+btnCreate.addEventListener('click', () => {
+  const amount = parseInt(input.value);
+  if (amount >= 1 && amount <= 100) {
+    createBoxes(amount);
+    input.value = '';
+  } else {
+    alert('Please enter a number between 1 and 100.');
+  }
+});
 
-// button.addEventListener("click", function() {
-//   const newColor = getRandomHexColor();
-
-//   document.body.style.backgroundColor = newColor;
-
-//   span.textContent = newColor;
-// })
-
-// function handleSubmit(event){
-//     event.preventDefault();
-//     const form = event.target;
-//     const email = form.elements.email.value.trim();
-//     const password = form.elements.password.value.trim();
-
-//     if (email === "" || password === "") {
-//         alert('All form fields must be filled in');
-//         return;
-//     }
-    
-//     const formData = {
-//         Login: email,
-//         Password: password
-//     };
-
-//     console.log(formData);
-
-//     form.reset();
-// }
+btnDestroy.addEventListener('click', () => {
+ destroyBoxes();
+});
