@@ -117,19 +117,19 @@ button:hover {
   height: 40px;
   margin-right: 16px;
 }
-/*  
-#controls input {
+ 
+ #controls input {
  border: 1px solid #808080;
   border-radius: 8px;
-  padding: 8px 72px;
+  /* padding: 8px 72px;  */
   width: 150px;
   height: 40px;
-  margin-right: 16px;
-}
-*/
-/* #boxes {
+   margin-right: 16px; 
+} 
+
+#boxes {
   margin-top: 48px;
   display: flex;
  flex-direction: row;
  gap: 16px;
-}  */
+} 
