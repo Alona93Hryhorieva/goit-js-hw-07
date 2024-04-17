@@ -16,19 +16,18 @@ const btnCreate = document.querySelector('[data-create]');
 const btnDestroy = document.querySelector('[data-destroy]');
 const boxesContainer = document.querySelector('#boxes');
 const input = document.querySelector('#controls input[type="number"]');
-
 btnCreate.addEventListener('click', () => {
   createBoxes();
 });
-
 btnDestroy.addEventListener('click', () => {
  destroyBoxes();
 });
 
+const fragment = document.createDocumentFragment();
+
 function createBoxes() {
  destroyBoxes();
   const inputNumber = Number(input.value);
-
   let sizeBox = 30;
 
   if (inputNumber > 0 && inputNumber <= 100) {
@@ -38,8 +37,9 @@ function createBoxes() {
       box.style.width = `${sizeBox}px`;
       box.style.height = `${sizeBox}px`;
       box.style.backgroundColor = getRandomHexColor();
-      boxesContainer.appendChild(box);
+      fragment.appendChild(box);
     }
+    boxesContainer.appendChild(fragment);
   }
   input.value = '';
 };
@@ -47,6 +47,3 @@ function createBoxes() {
 function destroyBoxes() {
   boxesContainer.innerHTML = '';
 }
-
-
-
