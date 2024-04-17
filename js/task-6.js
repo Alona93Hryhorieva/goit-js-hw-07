@@ -6,21 +6,19 @@
 // Розміри першого <div> елемента мають бути 30px на 30px.
 // Кожен наступний елемент повинен бути ширшим і вищим від попереднього на 10px.
 // Усі елементи повинні мати випадковий колір фону.Використовуй готову функцію getRandomHexColor() для отримання випадкового кольору.
-
-const btnCreate = document.querySelector('[data-create]');
-const btnDestroy = document.querySelector('[data-destroy]');
-const boxesContainer = document.querySelector('#boxes');
-
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
 }
+const btnCreate = document.querySelector('[data-create]');
+const btnDestroy = document.querySelector('[data-destroy]');
+const boxesContainer = document.querySelector('#boxes');
+const inputNumber = document.querySelector('#controls input[type="number"]');
 
 btnCreate.addEventListener('click', () => {
   createBoxes();
 });
-
 btnDestroy.addEventListener('click', () => {
  destroyBoxes();
 });
@@ -28,28 +26,21 @@ btnDestroy.addEventListener('click', () => {
 function createBoxes() {
   const inputNumber = document.querySelector('#controls input[type="number"]');
   const inputValue = parseInt(inputNumber.value);
-  //  if (inputNbrValue < 1 || 100 < inputNbrValue) {
-  //   alert('Please enter a value greater than or equal to 1.');
-  //   return;
-  // }
   let sizeBox = 30;
-
   destroyBoxes();
-
   for (let i = 0; i < inputValue; i++) {
    const box = document.createElement('div');
     sizeBox  += 10;
     box.style.width = `${sizeBox}px`;
     box.style.height = `${sizeBox}px`;
-
     box.style.backgroundColor = getRandomHexColor();
-
-   boxesContainer.appendChild(box);
+    boxesContainer.append(box);
   }
 };
 
 function destroyBoxes() {
- boxesContainer.innerHTML = '';
+  boxesContainer.innerHTML = '';
+  inputNumber.value = '';
 }
 
 
