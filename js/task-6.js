@@ -9,7 +9,6 @@
 
 const btnCreate = document.querySelector('[data-create]');
 const btnDestroy = document.querySelector('[data-destroy]');
-const input = document.querySelector('#controls input[type="number"]');
 const boxesContainer = document.querySelector('#boxes');
 
 function getRandomHexColor() {
@@ -18,34 +17,40 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-function createBoxes(amount) {
-  const fragment = document.createDocumentFragment();
-  for (let i = 0; i < amount; i++) {
-   const box = document.createElement('div');
-   const size = 30 + i * 10;
-    box.style.width = `${size}px`;
-    box.style.height = `${size}px`;
-    box.style.backgroundColor = getRandomHexColor();
-    fragment.appendChild(box);
-  }
-}
-  
-boxesContainer.appendChild(fragment);
-
-function destroyBoxes() {
- boxesContainer.innerHTML = '';
-}
-
 btnCreate.addEventListener('click', () => {
-  const amount = parseInt(input.value);
-  if (amount >= 1 && amount <= 100) {
-    createBoxes(amount);
-    input.value = '';
-  } else {
-    alert('Please enter a number between 1 and 100.');
-  }
+  createBoxes();
 });
 
 btnDestroy.addEventListener('click', () => {
  destroyBoxes();
 });
+
+function createBoxes() {
+  const inputNumber = document.querySelector('#controls input[type="number"]');
+  const inputValue = parseInt(inputNumber.value);
+  //  if (inputNbrValue < 1 || 100 < inputNbrValue) {
+  //   alert('Please enter a value greater than or equal to 1.');
+  //   return;
+  // }
+  let sizeBox = 30;
+
+  destroyBoxes();
+
+  for (let i = 0; i < inputValue; i++) {
+   const box = document.createElement('div');
+    sizeBox  += 10;
+    box.style.width = `${sizeBox}px`;
+    box.style.height = `${sizeBox}px`;
+
+    box.style.backgroundColor = getRandomHexColor();
+
+   boxesContainer.appendChild(box);
+  }
+};
+
+function destroyBoxes() {
+ boxesContainer.innerHTML = '';
+}
+
+
+
