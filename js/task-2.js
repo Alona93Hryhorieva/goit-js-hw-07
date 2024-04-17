@@ -48,3 +48,11 @@ images.forEach(image => {
 });
 
 gallery.appendChild(fragment);
+
+
+// images.map(image => {
+//   return `<li><img src=${image.url} alt=${image.alt}></li>`
+// });
+// const gallery = document.querySelector('ul.gallery');
+// gallery.document.insertAdjacentHTML('afterbegin', gallery);
+
